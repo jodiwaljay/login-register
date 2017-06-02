@@ -22,6 +22,20 @@ class SignUpForm extends Component {
     router: PropTypes.object
   };*/
 
+  handleFormSubmit(formProps) {
+    this.props.registerUser(formProps);
+  }
+
+  renderAlert() {
+    if(this.props.errorMessage) {
+      return (
+        <div>
+          <span><strong>Error!</strong> {this.props.errorMessage}</span>
+        </div>
+      );
+    }
+  }
+
   componentWillMount() {
 
   }
@@ -33,7 +47,8 @@ class SignUpForm extends Component {
     const { handleSubmit, pristine, reset, submitting, validate } = this.props
     return (
       <div className='container'>
-        <form onSubmit = {handleSubmit(this.someRandomSubmitFunc)}>
+        <form onSubmit = {handleSubmit(this.handleFormSubmit.bind(this))}>
+        {this.renderAlert()}
           <Field
                  name="name"
                  type="text"

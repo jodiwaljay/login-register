@@ -38,6 +38,7 @@ import SignUp from './containers/SignUpFormContainer'
 
 const rootEl = document.getElementById('root');
 
+
 ReactDOM.render(
   /*<Provider store={store}>
     <div style={{ padding: 15 }}>

@@ -1,20 +1,20 @@
 import SignUpForm from '../components/SignUpForm.js';
 import { connect } from 'react-redux';
-
+import { registerUser } from '../actions/auth';
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
-  }
-}
-
-
-function mapStateToProps(state, ownProps) {
-  return {
-    user: state.user,
-    validateFields: state.validateFields,
+    register: registerUser
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+
+function mapStateToProps(state) {
+  return {
+    errorMessage: state.auth.error,
+    message: state.auth.message
+  };
+}
+
+export default connect(mapStateToProps, {registerUser})(SignUpForm);

@@ -1,11 +1,10 @@
-import { createStore, combineReducers } from 'redux';
-import { reducer as reduxFormReducer } from 'redux-form';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import reducers from './reducers/index';
+import cookie from 'react-cookie';
+// Import stylesheets like this, if you choose: import './public/stylesheets/base.scss';
 
-const reducer = combineReducers({
-  form: reduxFormReducer, // mounted under "form"
-});
-const store = (window.devToolsExtension
-  ? window.devToolsExtension()(createStore)
-  : createStore)(reducer);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 export default store;

@@ -12,8 +12,7 @@ function generateToken(user) {
 function setUserInfo(request) {
   return {
     _id: request._id,
-    firstName: request.profile.firstName,
-    lastName: request.profile.lastName,
+    name: request.name,
     email: request.email,
     role: request.role
   }
@@ -40,17 +39,17 @@ exports.postLogin = function(req, res, next) {
 exports.register = function(req, res, next) {
   // Check for registration errors
   const email = req.body.email;
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
+  const name = req.body.name;
   const password = req.body.password;
 
+  console.log("Hey There");
   // Return error if no email provided
   if (!email) {
     return res.status(422).send({ error: 'You must enter an email address.'});
   }
 
   // Return error if full name not provided
-  if (!firstName || !lastName) {
+  if (!name) {
     return res.status(422).send({ error: 'You must enter your full name.'});
   }
 
@@ -71,11 +70,12 @@ exports.register = function(req, res, next) {
       let user = new User({
         email: email,
         password: password,
-        profile: { firstName: firstName, lastName: lastName }
+        name: name
       });
 
       user.save(function(err, user) {
-        if (err) { return next(err); }
+        if (err) { console.log(err);
+          return next(err); }
 
         // Subscribe member to Mailchimp list
         // mailchimp.subscribeToNewsletter(user.email);
@@ -83,13 +83,15 @@ exports.register = function(req, res, next) {
         // Respond with JWT if user was created
 
         let userInfo = setUserInfo(user);
-
+        console.log(userInfo);
         res.status(201).json({
           token: 'JWT ' + generateToken(userInfo),
           user: userInfo
+
         });
       });
   });
+
 }
 
 

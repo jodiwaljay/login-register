@@ -18,7 +18,7 @@ router.post('/register', AuthenticationController.register);
 router.post('/login', requireLogin, AuthenticationController.postLogin);
 
 router.get('/user', requireAuth, function(req, res) {
-res.send('It worked! User is: ' + req.user + '.');
+  res.send('It worked! User is: ' + req.user + '.');
 });
 
 module.exports = router;
