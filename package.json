@@ -39,8 +39,21 @@
     "webpack-merge": "^2.6.1"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.16.0",
     "classnames": "^2.2.5",
+    "cookie-parser": "~1.4.3",
+    "crypto": "0.0.3",
+    "debug": "~2.6.0",
     "es6-promise": "^4.0.5",
+    "express": "~4.14.1",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "4.9.4",
+    "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
@@ -49,6 +62,7 @@
     "redux": "^3.6.0",
     "redux-form": "^6.7.0",
     "redux-thunk": "^2.2.0",
+    "serve-favicon": "~2.3.2",
     "whatwg-fetch": "^2.0.2"
   }
 }
